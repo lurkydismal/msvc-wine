@@ -210,14 +210,14 @@ rm msvcenv.sh
 if [ -d "$DEST/bin/$host" ]; then
     if WINE="$(command -v wine64 || command -v wine)"; then
         WINEDEBUG=-all "${WINE}" wineboot &>/dev/null
-        # echo "Build msvctricks ..."
-        # "$DEST/bin/$host/cl" /EHsc /O2 "$ORIG/msvctricks.cpp"
-        # if [ $? -eq 0 ]; then
-        #     mv msvctricks.exe bin/
-        #     rm msvctricks.obj
-        #     echo "Build msvctricks done."
-        # else
-        #     echo "Build msvctricks failed."
-        # fi
+        echo "Build msvctricks ..."
+        "$DEST/bin/$host/cl" /EHsc /O2 "$ORIG/msvctricks.cpp"
+        if [ $? -eq 0 ]; then
+            mv msvctricks.exe bin/
+            rm msvctricks.obj
+            echo "Build msvctricks done."
+        else
+            echo "Build msvctricks failed."
+        fi
     fi
 fi
